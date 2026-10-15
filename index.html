@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book an Appointment</title>
+    <title>Swimming Lessons – Join a Class</title>
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <a href="#" class="logo">Booking<span>Co</span></a>
+        <a href="#" class="logo">Swim<span>Club</span></a>
         <nav class="nav">
-          <a href="#booking">Book</a>
-          <a href="#services">Services</a>
+          <a href="#booking">Join</a>
+          <a href="#classes">Classes</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
@@ -20,72 +20,66 @@
 
     <section class="hero">
       <div class="container">
-        <h1>Book your appointment in under a minute</h1>
-        <p>Pick a service, choose a time, and you're sorted.</p>
-        <a href="#booking" class="btn btn-primary">Book now</a>
+        <h1>Swimming lessons, paid monthly</h1>
+        <p>
+          Pick a class, choose a start date, and pay month to month. Cancel
+          anytime.
+        </p>
+        <a href="#booking" class="btn btn-primary">Join a class</a>
       </div>
     </section>
 
     <main class="container" id="booking">
       <div class="booking-layout">
-        <!-- Left: steps -->
         <div class="steps">
-          <!-- Step 1: service -->
+          <!-- Step 1: class (loaded from database) -->
           <section class="card">
-            <h2><span class="step-num">1</span> Choose a service</h2>
-            <div class="service-grid" id="services">
-              <button
-                class="service"
-                data-name="Consultation"
-                data-price="30"
-                data-duration="30"
-              >
-                <strong>Consultation</strong>
-                <span>30 min · €30</span>
-              </button>
-              <button
-                class="service"
-                data-name="Standard Session"
-                data-price="50"
-                data-duration="60"
-              >
-                <strong>Standard Session</strong>
-                <span>60 min · €50</span>
-              </button>
-              <button
-                class="service"
-                data-name="Extended Session"
-                data-price="80"
-                data-duration="90"
-              >
-                <strong>Extended Session</strong>
-                <span>90 min · €80</span>
-              </button>
+            <h2><span class="step-num">1</span> Choose a class</h2>
+            <div class="service-grid" id="classes">
+              <p class="slots-empty">Loading classes…</p>
             </div>
           </section>
 
-          <!-- Step 2: date & time -->
+          <!-- Step 2: start date -->
           <section class="card">
-            <h2><span class="step-num">2</span> Pick a date & time</h2>
+            <h2><span class="step-num">2</span> Start date</h2>
             <label class="field">
-              <span>Date</span>
-              <input type="date" id="date" />
+              <span>First lesson</span>
+              <input type="date" id="start-date" />
             </label>
-            <div class="slots" id="slots"></div>
+            <p class="hint" id="schedule-hint">
+              Select a class to see its weekly schedule.
+            </p>
+            <p class="hint">
+              Billed monthly on the same date. Cancel anytime before your next
+              billing date.
+            </p>
           </section>
 
           <!-- Step 3: details -->
           <section class="card">
-            <h2><span class="step-num">3</span> Your details</h2>
+            <h2><span class="step-num">3</span> Member details</h2>
             <form id="booking-form" novalidate>
               <div class="row">
                 <label class="field">
-                  <span>Full name</span>
-                  <input type="text" id="name" required />
+                  <span>Swimmer's full name</span>
+                  <input type="text" id="swimmer" required />
+                </label>
+                <label class="field">
+                  <span>Date of birth</span>
+                  <input type="date" id="dob" required />
+                </label>
+              </div>
+              <div class="row">
+                <label class="field">
+                  <span
+                    >Parent / guardian name <small>(if under 18)</small></span
+                  >
+                  <input type="text" id="guardian" />
                 </label>
                 <label class="field">
                   <span>Phone</span>
-                  <input type="tel" id="phone" />
+                  <input type="tel" id="phone" required />
                 </label>
               </div>
               <label class="field">
@@ -93,42 +87,46 @@
                 <input type="email" id="email" required />
               </label>
               <label class="field">
-                <span>Notes (optional)</span>
+                <span>Medical notes / anything we should know (optional)</span>
                 <textarea id="notes" rows="3"></textarea>
+              </label>
+              <label class="check">
+                <input type="checkbox" id="terms" />
+                <span>I agree to the monthly billing terms</span>
               </label>
               <p class="error" id="error" hidden></p>
               <button type="submit" class="btn btn-primary btn-block">
-                Confirm booking
+                Continue to payment
               </button>
             </form>
           </section>
         </div>
 
-        <!-- Right: summary -->
+        <!-- Summary -->
         <aside class="summary card">
-          <h3>Your booking</h3>
+          <h3>Your membership</h3>
           <dl>
-            <dt>Service</dt>
-            <dd id="sum-service">—</dd>
-            <dt>Date</dt>
-            <dd id="sum-date">—</dd>
-            <dt>Time</dt>
-            <dd id="sum-time">—</dd>
-            <dt>Duration</dt>
-            <dd id="sum-duration">—</dd>
+            <dt>Class</dt>
+            <dd id="sum-class">—</dd>
+            <dt>Level</dt>
+            <dd id="sum-level">—</dd>
+            <dt>Schedule</dt>
+            <dd id="sum-schedule">—</dd>
+            <dt>Starts</dt>
+            <dd id="sum-start">—</dd>
           </dl>
           <div class="total">
-            <span>Total</span>
-            <strong id="sum-total">€0</strong>
+            <span>Monthly</span>
+            <strong id="sum-total">€0 / mo</strong>
           </div>
+          <p class="hint">First payment due today, then monthly.</p>
         </aside>
       </div>
     </main>
 
-    <!-- Success modal -->
     <div class="modal" id="modal" hidden>
       <div class="modal-box">
-        <h2>Booking confirmed ✅</h2>
+        <h2>You're almost in 🏊</h2>
         <p id="modal-text"></p>
         <button class="btn btn-primary" id="modal-close">Done</button>
       </div>
@@ -137,7 +135,7 @@
     <footer class="site-footer" id="contact">
       <div class="container">
         <p>
-          © <span id="year"></span> BookingCo · hello@example.com · +353 00 000
+          © <span id="year"></span> SwimClub · hello@example.com · +353 00 000
           0000
         </p>
       </div>

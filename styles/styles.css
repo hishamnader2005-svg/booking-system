@@ -182,6 +182,50 @@ body {
   background: #eff4ff;
 }
 
+/* Class cards */
+.service span {
+  display: block;
+}
+.service .price {
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-top: 8px;
+}
+.service .price small {
+  color: var(--muted);
+  font-weight: 500;
+}
+.service .spots {
+  color: #059669;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+.service .spots.full {
+  color: var(--danger);
+}
+.service:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  border-color: var(--border);
+}
+.hint {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+.check {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+.field small {
+  font-weight: 400;
+  color: var(--muted);
+}
+
 /* Slots */
 .slots {
   display: grid;
