@@ -19,3 +19,15 @@ create table user_classes (
     role varchar(20) not null,
     primary key (user_id, class_id)
 );
+
+
+
+insert into classes (id, name, description) values
+    (1, 'Ducklings', 'Beginner swimming class for young learners'),
+    (2, 'Tadpoles', 'Gentle water confidence and basic swim skills'),
+    (3, 'Frogs', 'Improving strokes, kicking, and breathing technique'),
+    (4, 'Penguins', 'Intermediate swimming with stronger endurance'),
+    (5, 'Seals', 'Developing coordination and confidence in deeper water'),
+    (6, 'Sharks', 'Advanced swimming for confident, skilled swimmers');
+
+
